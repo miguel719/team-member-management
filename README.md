@@ -19,8 +19,13 @@ Implement a team member managemente application on Djando and React
 - Docker: Local development containers
 - Testing: Pytest (backend), Jest + React Testing Library (frontend)
 
+# Starting Project
+python manage.py createsuperuser
+http://localhost:8000/admin
+
 # Endpoint to implement
 - POST /members/login
+- POST /members/signup/
 - GET /members
 - UPDATE /members
 - DELETE /members
@@ -33,3 +38,6 @@ Implement a team member managemente application on Djando and React
 - 20 minutes: to review and define initial requierements
 - 25 minutes: Implements initial boiler plate of backend with django rest and base docker containers 
 - 25 minutes: Install front end boiler plated (vite + react +docker)
+- 35 minutes: Configure initial urls and create basic auth using Django JWT
+
+

@@ -5,8 +5,8 @@ services:
     image: postgres:15
     environment:
       POSTGRES_DB: team_db
-      POSTGRES_USER: team_user
-      POSTGRES_PASSWORD: team_pass
+      POSTGRES_USER: team_user_123
+      POSTGRES_PASSWORD: team_pass_123
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -31,6 +31,9 @@ services:
     build: ./frontend
     ports:
       - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     environment:
       - VITE_API_URL=http://localhost:8000
     depends_on:
