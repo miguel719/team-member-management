@@ -24,11 +24,12 @@ python manage.py createsuperuser
 http://localhost:8000/admin
 
 # Endpoint to implement
-- POST /members/login
+- POST /members/login/
 - POST /members/signup/
-- GET /members
-- UPDATE /members
-- DELETE /members
+- GET /members/
+- POST /members/add/
+- PATCH /members/profiles/{id}/
+- DELETE /members/{id}/
 
 # Models
 - Users (uses default email, password), extends to add role column
@@ -43,4 +44,4 @@ http://localhost:8000/admin
 - 25 minutes: Install front end boiler plated (vite + react +docker)
 - 35 minutes: Configure initial urls and create basic auth using Django JWT
 - 20 minutes: implements roles and profiles models
-
+- 30 minutes: implements the GET, PATCH and DELETE endpoints
