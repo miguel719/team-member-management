@@ -30,6 +30,9 @@ http://localhost:8000/admin
 - UPDATE /members
 - DELETE /members
 
+# Models
+- Users (uses default email, password), extends to add role column
+- Profile: first_name, last_name, email, phone
 
 # Tests includes
 
@@ -39,5 +42,5 @@ http://localhost:8000/admin
 - 25 minutes: Implements initial boiler plate of backend with django rest and base docker containers 
 - 25 minutes: Install front end boiler plated (vite + react +docker)
 - 35 minutes: Configure initial urls and create basic auth using Django JWT
-
+- 20 minutes: implements roles and profiles models
 
