@@ -14,7 +14,7 @@ Implement a team member managemente application on Djando and React
 
 - Backend: Django + Django REST Framework
 - Frontend: React (Vite)
-- Database: PostgreSQL or SQLite (for local)
+- Database: PostgreSQL
 - Auth: Token-based (e.g., JWT)
 - Docker: Local development containers
 - Testing: Pytest (backend), Jest + React Testing Library (frontend)
@@ -31,3 +31,4 @@ Implement a team member managemente application on Djando and React
 
 # Development Logs
 - 20 Minutes to review and define initial requierements
+- Implements initial boiler plate of backend with django rest and base docker containers 25 minutes
