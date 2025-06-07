@@ -30,5 +30,6 @@ Implement a team member managemente application on Djando and React
 
 
 # Development Logs
-- 20 Minutes to review and define initial requierements
-- Implements initial boiler plate of backend with django rest and base docker containers 25 minutes
+- 20 minutes: to review and define initial requierements
+- 25 minutes: Implements initial boiler plate of backend with django rest and base docker containers 
+- 25 minutes: Install front end boiler plated (vite + react +docker)

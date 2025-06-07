@@ -26,6 +26,18 @@ services:
     networks:
       - team-net
 
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - team-net
+
 volumes:
   postgres_data:
 
