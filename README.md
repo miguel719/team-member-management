@@ -35,9 +35,13 @@ http://localhost:8000/admin
 # Models
 - Users (uses default email, password), extends to add role column
 - Profile: first_name, last_name, email, phone
+- Reset user password
 
 # Tests includes
 
+# ToDo Improvements (outside of the scope)
+- Members pagination and sort
+- Members search filter
 
 # Development Logs
 - 20 minutes: to review and define initial requierements
@@ -50,3 +54,4 @@ http://localhost:8000/admin
 - 15 minutes: Add login and signup flow
 - 25 minutes: Implement me endpoint and stablish protected routes
 - 15 minutes: Implement list page
+- 40 minutes: back views refactor and member form page

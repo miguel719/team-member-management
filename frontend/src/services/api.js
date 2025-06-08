@@ -76,10 +76,10 @@ export async function deleteMember(userId) {
   return authFetch(`/members/${userId}/`, { method: "DELETE" });
 }
 
-export async function updateProfile(userId, profileData) {
-  return authFetch(`/members/profiles/${userId}/`, {
+export async function updateMember(userId, data) {
+  return authFetch(`/members/${userId}/`, {
     method: "PATCH",
-    body: JSON.stringify(profileData),
+    body: JSON.stringify(data),
   });
 }
 
@@ -107,6 +107,10 @@ export async function getCurrentUser() {
   } catch (err) {
     return null;
   }
+}
+
+export async function getMember(userId) {
+  return authFetch(`/members/${userId}/`);
 }
 
 

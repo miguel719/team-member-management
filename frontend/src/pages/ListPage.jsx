@@ -15,10 +15,12 @@ import {
 } from "@mantine/core";
 import { getMembers } from "../services/api";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function ListPage() {
   const [members, setMembers] = useState([]);
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -47,6 +49,9 @@ function ListPage() {
         </Button>
       </Flex>
 
+      <Group position="right" mb="md">
+        <Button onClick={() => navigate("/members/add")}>+ Add Member</Button>
+      </Group>
       <Title order={2} mb="xs">Team members</Title>
       <Text size="sm" color="dimmed" mb="md">
         You have {members.length} team member{members.length !== 1 && "s"}.
@@ -63,7 +68,9 @@ function ListPage() {
           <Card key={member.id || member.email} withBorder shadow="sm" radius="md" p="sm">
             <Group align="flex-start">
               <Avatar color="gray" radius="xl" />
-              <Box>
+              <Box 
+                onClick={() => navigate(`/members/edit/${member.id}`)}
+                style={{ cursor: "pointer" }}>
                 <Text fw={500}>
                   {profile.first_name || "No name"} {profile.last_name || ""}
                   {member.role === "admin" && " (admin)"}
