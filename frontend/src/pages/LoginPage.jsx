@@ -1,12 +1,17 @@
 // src/pages/LoginPage.jsx
 import { useState } from "react";
-import { Button, TextInput, Paper, Title, Stack } from "@mantine/core";
+import { Button, TextInput, Paper, Title, Stack, Anchor, Text } from "@mantine/core";
 import { loginUser } from "../services/api";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 function LoginPage({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +21,7 @@ function LoginPage({ onLogin }) {
       const data = await loginUser(email, password);
       localStorage.setItem("access", data.access);
       localStorage.setItem("refresh", data.refresh);
-      onLogin({ email });
+      navigate("/list"); // redirige tras login exitoso
     } catch (err) {
       setError(err.message);
     }
@@ -32,8 +37,17 @@ function LoginPage({ onLogin }) {
           <Button type="submit" fullWidth>Log in</Button>
           {error && <div style={{ color: "red", fontSize: "0.9rem" }}>{error}</div>}
         </Stack>
+
+       
       </form>
+      <Text size="sm" mt="md" align="center">
+            Don’t have an account?{" "}
+        <Anchor component="button" onClick={() => navigate("/signup")}>
+            Sign up
+        </Anchor>
+        </Text>
     </Paper>
+    
   );
 }
 

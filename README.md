@@ -46,3 +46,4 @@ http://localhost:8000/admin
 - 20 minutes: implements roles and profiles models
 - 30 minutes: implements the GET, PATCH and DELETE endpoints
 - 50 minutes: Congfigure react theme and create basic login and list
+- 15 minutes: Add login and signup flow

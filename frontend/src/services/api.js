@@ -14,6 +14,22 @@ export async function loginUser(username, password) {
   return res.json(); // { access, refresh }
 }
 
+// Signup
+export async function signupUser(email, password) {
+  const res = await fetch(`${API_URL}/members/signup/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Signup failed");
+  }
+
+  return res.json();
+}
+
 // Authentication
 async function authFetch(url, options = {}) {
   const token = localStorage.getItem("access");

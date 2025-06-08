@@ -1,15 +1,23 @@
 // src/App.jsx
-import { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MantineProvider } from "@mantine/core";
 import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 import ListPage from "./pages/ListPage";
 
-function App() {
-  const [user, setUser] = useState(null);
 
+function App() {
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
-      {user ? <ListPage /> : <LoginPage onLogin={setUser} />}
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/list" element={<ListPage />} />
+          <Route path="*" element={<LoginPage />} />
+        </Routes>
+      </Router>
     </MantineProvider>
   );
 }
