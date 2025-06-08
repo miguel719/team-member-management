@@ -13,6 +13,7 @@ services:
       - team-net
 
   backend:
+    container_name: backend
     build: ./backend
     command: bash entrypoint.sh
     volumes:

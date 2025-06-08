@@ -43,7 +43,7 @@ These users are automatically created by the seeder:
 
 **Admin User**
 - Email: `admin@example.com`
-- Password: `adminspass`
+- Password: `adminpass`
 
 **Regular User**
 - Email: `user1@example.com`

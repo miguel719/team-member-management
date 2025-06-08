@@ -1,6 +1,10 @@
 FROM python:3.11-slim
 
-RUN apt-get update && apt-get upgrade -y
+# Instalar herramientas básicas necesarias para pytest y compilación de dependencias
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc build-essential && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
