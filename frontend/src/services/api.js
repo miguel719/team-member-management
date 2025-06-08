@@ -1,0 +1,56 @@
+// src/services/api.js
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
+// Login
+export async function loginUser(username, password) {
+  const res = await fetch(`${API_URL}/members/login/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
+
+  if (!res.ok) throw new Error("Login failed");
+  return res.json(); // { access, refresh }
+}
+
+// Authentication
+async function authFetch(url, options = {}) {
+  const token = localStorage.getItem("access");
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+    ...options.headers,
+  };
+
+  const res = await fetch(`${API_URL}${url}`, { ...options, headers });
+
+  if (res.status === 401) {
+    throw new Error("Unauthorized. Token may be expired.");
+  }
+
+  return res.json();
+}
+
+// Members API
+export async function getMembers() {
+  return authFetch("/members/");
+}
+
+export async function deleteMember(userId) {
+  return authFetch(`/members/${userId}/`, { method: "DELETE" });
+}
+
+export async function updateProfile(userId, profileData) {
+  return authFetch(`/members/profiles/${userId}/`, {
+    method: "PATCH",
+    body: JSON.stringify(profileData),
+  });
+}
+
+export async function createMember(data) {
+  return authFetch("/members/", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+}

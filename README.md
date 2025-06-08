@@ -45,3 +45,4 @@ http://localhost:8000/admin
 - 35 minutes: Configure initial urls and create basic auth using Django JWT
 - 20 minutes: implements roles and profiles models
 - 30 minutes: implements the GET, PATCH and DELETE endpoints
+- 50 minutes: Congfigure react theme and create basic login and list
