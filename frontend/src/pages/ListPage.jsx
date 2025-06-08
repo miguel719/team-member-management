@@ -1,7 +1,19 @@
-
+// src/pages/ListPage.jsx
 import { useEffect, useState } from "react";
-import { getMembers, logoutUser } from "../services/api";
-import { Button } from "@mantine/core";
+import {
+  Container,
+  Title,
+  Text,
+  Card,
+  Group,
+  Avatar,
+  Stack,
+  Divider,
+  Button,
+  Box,
+  Flex,
+} from "@mantine/core";
+import { getMembers } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 
 function ListPage() {
@@ -9,32 +21,68 @@ function ListPage() {
   const { user, logout } = useAuth();
 
   useEffect(() => {
-    getMembers()
-      .then(setMembers)
-      .catch((err) => console.error("Failed to load members:", err));
+    const fetchMembers = async () => {
+      try {
+        const data = await getMembers();
+        setMembers(data);
+      } catch (err) {
+        console.error("Failed to load members:", err);
+      }
+    };
+    fetchMembers();
   }, []);
 
-  const handleLogout = () => {
-    logoutUser();
-  }
-
-
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Hello, {user?.profile?.first_name || user?.email}</h1>
-      <p>Your role: <strong>{user?.role}</strong></p>
-      <Button onClick={() => { logout(); navigate("/login"); }} color="red">
-        Logout
-      </Button>
-      <h1>Team Members</h1>
-      <ul>
-        {members.map((m, i) => (
-          <li key={i}>
-            {m.profile?.first_name} {m.profile?.last_name} – {m.profile?.email}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container size="xs" py="xl">
+      {/* Header */}
+      <Flex justify="space-between" align="center" mb="md">
+        <Box>
+          <Text size="sm" color="dimmed">
+            Logged in as
+          </Text>
+          <Text fw={500}>{user?.email || "Unknown"}</Text>
+        </Box>
+        <Button size="xs" variant="light" color="gray" onClick={logout}>
+          Logout
+        </Button>
+      </Flex>
+
+      <Title order={2} mb="xs">Team members</Title>
+      <Text size="sm" color="dimmed" mb="md">
+        You have {members.length} team member{members.length !== 1 && "s"}.
+      </Text>
+
+      <Divider mb="sm" />
+
+      {/* Member list */}
+      <Stack spacing="sm">
+      {members.map((member) => {
+        const profile = member.profile || {};
+
+        return (
+          <Card key={member.id || member.email} withBorder shadow="sm" radius="md" p="sm">
+            <Group align="flex-start">
+              <Avatar color="gray" radius="xl" />
+              <Box>
+                <Text fw={500}>
+                  {profile.first_name || "No name"} {profile.last_name || ""}
+                  {member.role === "admin" && " (admin)"}
+                </Text>
+                <Text size="sm" color="dimmed">
+                  {profile.phone || "No phone"}
+                </Text>
+                <Text size="sm" color="dimmed">
+                  {profile.email || member.email}
+                </Text>
+              </Box>
+            </Group>
+          </Card>
+        );
+      })}
+
+
+      </Stack>
+    </Container>
   );
 }
 

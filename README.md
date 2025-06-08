@@ -27,6 +27,7 @@ http://localhost:8000/admin
 - POST /members/login/
 - POST /members/signup/
 - GET /members/
+- GET /members/me
 - POST /members/add/
 - PATCH /members/profiles/{id}/
 - DELETE /members/{id}/
@@ -48,3 +49,4 @@ http://localhost:8000/admin
 - 50 minutes: Congfigure react theme and create basic login and list
 - 15 minutes: Add login and signup flow
 - 25 minutes: Implement me endpoint and stablish protected routes
+- 15 minutes: Implement list page
