@@ -20,8 +20,12 @@ Implement a team member managemente application on Djando and React
 - Testing: Pytest (backend), Jest + React Testing Library (frontend)
 
 # Starting Project
-python manage.py createsuperuser
-http://localhost:8000/admin
+- On the start project some members are created on the seeder, the admin membre credentials
+    - admin@example.com
+    - adminspass
+- For regular users you can use this:
+    - user1@example.com
+    - userpass
 
 # Endpoint to implement
 - POST /members/login/
@@ -55,3 +59,4 @@ http://localhost:8000/admin
 - 25 minutes: Implement me endpoint and stablish protected routes
 - 15 minutes: Implement list page
 - 40 minutes: back views refactor and member form page
+- 15 minutes: implement seeder
