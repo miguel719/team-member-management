@@ -68,3 +68,4 @@ Implement a team member managemente application on Djando and React
 - 15 minutes: Implement list page
 - 40 minutes: back views refactor and member form page
 - 15 minutes: implement seeder
+- 50 minutes: implements testing
