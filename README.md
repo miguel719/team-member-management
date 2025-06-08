@@ -20,6 +20,10 @@ Implement a team member managemente application on Djando and React
 - Testing: Pytest (backend), Jest + React Testing Library (frontend)
 
 # Starting Project
+
+## Instructions implementing
+
+## Users created with seeders
 - On the start project some members are created on the seeder, the admin membre credentials
     - admin@example.com
     - adminspass
@@ -27,7 +31,11 @@ Implement a team member managemente application on Djando and React
     - user1@example.com
     - userpass
 
-# Endpoint to implement
+# Testing
+- Run on the backend container: pytest
+
+
+# Endpoint Implementes
 - POST /members/login/
 - POST /members/signup/
 - GET /members/
