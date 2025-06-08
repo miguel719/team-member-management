@@ -39,6 +39,12 @@ class SignupView(APIView):
 
         return Response({"message": "User created successfully"}, status=status.HTTP_201_CREATED)
 
+class MeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserWithProfileSerializer(request.user)
+        return Response(serializer.data)
 
 class MemberListView(APIView):
     permission_classes = [IsAuthenticated]

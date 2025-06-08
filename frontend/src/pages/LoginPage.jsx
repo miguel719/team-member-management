@@ -3,15 +3,16 @@ import { useState } from "react";
 import { Button, TextInput, Paper, Title, Stack, Anchor, Text } from "@mantine/core";
 import { loginUser } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 
 
-
-function LoginPage({ onLogin }) {
+function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { loadUser } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +22,8 @@ function LoginPage({ onLogin }) {
       const data = await loginUser(email, password);
       localStorage.setItem("access", data.access);
       localStorage.setItem("refresh", data.refresh);
-      navigate("/list"); // redirige tras login exitoso
+      await loadUser();
+      navigate("/list");
     } catch (err) {
       setError(err.message);
     }
@@ -29,6 +31,7 @@ function LoginPage({ onLogin }) {
 
   return (
     <Paper shadow="md" radius="md" p="xl" withBorder style={{ maxWidth: 400, margin: "auto", marginTop: "10vh" }}>
+        
       <Title order={2} align="center" mb="md">Login</Title>
       <form onSubmit={handleSubmit}>
         <Stack>

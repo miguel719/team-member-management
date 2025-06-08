@@ -5,6 +5,7 @@ from .views import MemberListView
 from .views import UpdateProfileView
 from .views import CreateMemberView
 from .views import DeleteMemberView
+from .views import MeView
 
 urlpatterns = [
     path('signup/', SignupView.as_view(), name='signup'),
@@ -13,4 +14,5 @@ urlpatterns = [
     path('add/', CreateMemberView.as_view(), name="create-member"),
     path('', MemberListView.as_view(), name='member-list'),
     path('<int:user_id>/', DeleteMemberView.as_view(), name='delete-member'),
+    path("me/", MeView.as_view(), name="me"),
 ]

@@ -48,6 +48,25 @@ async function authFetch(url, options = {}) {
   return res.json();
 }
 
+// Check if token is valid
+export async function isTokenValid() {
+  const token = localStorage.getItem("access");
+  if (!token) return false;
+
+  try {
+    const res = await fetch("http://localhost:8000/members/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return res.ok;
+  } catch (err) {
+    return false;
+  }
+}
+
+
 // Members API
 export async function getMembers() {
   return authFetch("/members/");
@@ -69,4 +88,31 @@ export async function createMember(data) {
     method: "POST",
     body: JSON.stringify(data),
   });
+}
+
+
+// Get current user
+export async function getCurrentUser() {
+  const token = localStorage.getItem("access");
+  if (!token) return null;
+
+  try {
+    const res = await fetch("http://localhost:8000/members/me/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) throw new Error("Not authorized");
+    return await res.json();
+  } catch (err) {
+    return null;
+  }
+}
+
+
+// Logout
+export function logoutUser() {
+  localStorage.removeItem("access");
+  localStorage.removeItem("refresh");
+  window.location.href = "/login"; 
 }
