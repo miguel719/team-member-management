@@ -186,3 +186,4 @@ docker-compose exec frontend npm test
 - 15 min – Seeder with initial users  
 - 50 min – Backend test coverage with Pytest
 - 35 min - Front end basic test coverage with Jest 
+- 25 min - Final adjustmens
