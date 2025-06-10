@@ -41,12 +41,19 @@ async function authFetch(url, options = {}) {
 
   const res = await fetch(`${API_URL}${url}`, { ...options, headers });
 
-  if (res.status === 401) {
-    throw new Error("Unauthorized. Token may be expired.");
+  if (!res.ok) {
+    let errorData = {};
+    try {
+      errorData = await res.json();
+    } catch (_) {
+      errorData = { error: "Request failed" };
+    }
+    throw { type: "ApiError", data: errorData };
   }
 
   return res.json();
 }
+
 
 // Check if token is valid
 export async function isTokenValid() {

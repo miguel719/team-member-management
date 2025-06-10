@@ -1,8 +1,6 @@
 from django.urls import path
 from .views import SignupView
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .views import UpdateProfileView
-from .views import CreateMemberView
 from .views import MemberViewSet
 
 from django.urls import path, include

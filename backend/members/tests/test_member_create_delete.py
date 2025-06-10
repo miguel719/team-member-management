@@ -3,7 +3,7 @@ from rest_framework.test import APIClient
 from django.urls import reverse
 from members.models import CustomUser
 from uuid import uuid4
-
+from rest_framework.exceptions import PermissionDenied
 
 @pytest.mark.django_db
 class TestMemberCreateDelete:
@@ -49,7 +49,7 @@ class TestMemberCreateDelete:
             "email": "newuser@example.com",
             "first_name": "New",
             "last_name": "User",
-            "phone": "555-1234",
+            "phone": "5551234111",
             "role": "regular"
         }, format="json")
         assert response.status_code == 201
@@ -61,7 +61,7 @@ class TestMemberCreateDelete:
             "email": "admin2@example.com",
             "first_name": "Admin",
             "last_name": "Two",
-            "phone": "555-5678",
+            "phone": "5555678122",
             "role": "admin"
         }, format="json")
         assert response.status_code == 201
@@ -73,7 +73,7 @@ class TestMemberCreateDelete:
             "email": "badadmin@example.com",
             "first_name": "Not",
             "last_name": "Allowed",
-            "phone": "555-0000",
+            "phone": "5553000011",
             "role": "admin"
         }, format="json")
         assert response.status_code == 403

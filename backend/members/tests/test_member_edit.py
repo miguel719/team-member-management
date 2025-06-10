@@ -41,7 +41,7 @@ class TestMemberEdit:
         res = self.client.patch(f"/members/{self.user.id}/", {
             "first_name": "NuevoNombre",
             "last_name": "NuevoApellido",
-            "phone": "123456789"
+            "phone": "1234567890"
         }, format="json")
         assert res.status_code == 200
         assert res.data["profile"]["first_name"] == "NuevoNombre"

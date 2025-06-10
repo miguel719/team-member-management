@@ -51,7 +51,18 @@ import {
         }
         navigate("/list");
       } catch (err) {
-        setError(err.message || "Error");
+        const data = err?.data;
+      
+        if (typeof data === "string") {
+          setError(data);
+        } else if (data && typeof data === "object") {
+          const messages = Object.values(data)
+            .flat()
+            .join(" ");
+          setError(messages || "Unknown error");
+        } else {
+          setError("An unexpected error occurred");
+        }
       }
     };
   
